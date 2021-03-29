@@ -1,0 +1,45 @@
+[submodule "pack/plugins/start/vim-gutter"]
+	path = pack/plugins/start/vim-gutter
+	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "pack/plugins/start/rhubarb"]
+	path = pack/plugins/start/rhubarb
+	url = git@github.com:tpope/vim-rhubarb.git
+[submodule "pack/plugins/start/ack"]
+	path = pack/plugins/start/ack
+	url = git@github.com:mileszs/ack.vim.git
+[submodule "pack/plugins/start/vim-javascript"]
+	path = pack/plugins/start/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "pack/plugins/start/vim-graphql"]
+	path = pack/plugins/start/vim-graphql
+	url = git@github.com:jparise/vim-graphql.git
+[submodule "pack/plugins/start/styled-components"]
+	path = pack/plugins/start/styled-components
+	url = git@github.com:styled-components/vim-styled-components.git
+[submodule "pack/plugins/start/vim-airline"]
+	path = pack/plugins/start/vim-airline
+	url = git@github.com:vim-airline/vim-airline.git
+[submodule "pack/plugins/start/fzf.git"]
+	path = pack/plugins/start/fzf.git
+	url = git@github.com:junegunn/fzf.git
+[submodule "pack/plugins/start/coc.vim"]
+	path = pack/plugins/start/coc.vim
+	url = git@github.com:neoclide/coc.nvim.git
+[submodule "pack/plugins/start/nerdtree"]
+	path = pack/plugins/start/nerdtree
+	url = git@github.com:preservim/nerdtree.git
+[submodule "pack/plugins/start/solarized"]
+	path = pack/plugins/start/solarized
+	url = git@github.com:altercation/solarized.git
+[submodule "pack/plugins/start/vim-typescript"]
+	path = pack/plugins/start/vim-typescript
+	url = git@github.com:leafgarland/typescript-vim.git
+[submodule "pack/plugins/start/fzf.vim"]
+	path = pack/plugins/start/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
+[submodule "pack/plugins/start/endwise"]
+	path = pack/plugins/start/endwise
+	url = git@github.com:tpope/vim-endwise.git
+[submodule "pack/plugins/start/coc-prettier"]
+	path = pack/plugins/start/coc-prettier
+	url = git@github.com:neoclide/coc-prettier.git
