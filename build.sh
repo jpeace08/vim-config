@@ -50,7 +50,6 @@ GIT_DIR=./.git
 if [[ -d "$GIT_DIR" ]];
 then
   echo "Repo git exists."
-  exit
 else
 	echo "Repo git does not exist.Init repository..."
   git init -b master
@@ -60,8 +59,10 @@ cd ./pack/plugins/start
 
 echo "Start add submodule repositories"
 
-for repos_name in ${repos[@]}; do
-  if [[ $repos_name =~ https\:\/\/github.com(\/.*\/)(.*)\.git ]]; then
+for repos_name in ${repos[@]}; 
+do
+  if [[ $repos_name =~ https\:\/\/github.com(\/.*\/)(.*)\.git ]]; 
+  then
     git submodule add $repos_name ./${BASH_REMATCH[2]}
   fi
 done
