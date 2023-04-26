@@ -41,10 +41,18 @@ repos=(
   "https://github.com/davidhalter/jedi-vim.git"
   "https://github.com/raimon49/requirements.txt.vim.git"
   "https://github.com/leafgarland/typescript-vim.git"
-  "https://github.com/HerringtonDarkholme/yats.vim.git"
+  "https://github.com/HerringtonDarkholme/yats.vim.git"ls
+  
+  # "https://github.com/fatih/vim-go"
+  # "https://github.com/phpactor/phpactor",
+  # "https://github.com/stephpy/vim-php-cs-fixer",
 )
 
-mkdir -p ./pack/plugins/start ./pack/plugins/opt ./colors
+if [ ! -d ./pack ];
+then
+  echo "No plugins directory structure. Create structure..."
+  mkdir -p ./pack/plugins/start ./pack/plugins/opt ./colors
+fi
 
 GIT_DIR=./.git
 if [[ -d "$GIT_DIR" ]];
@@ -63,7 +71,10 @@ for repos_name in ${repos[@]};
 do
   if [[ $repos_name =~ https\:\/\/github.com(\/.*\/)(.*)\.git ]]; 
   then
-    git submodule add $repos_name ./${BASH_REMATCH[2]}
+    if [ ! -d ./${BASH_REMATCH[2]} ];
+    then
+      git submodule add $repos_name ./${BASH_REMATCH[2]}
+    fi
   fi
 done
 
