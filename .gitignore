@@ -1,0 +1,6 @@
+colors/
+pack/
+colors/*
+pack/*
+session/
+.gitmodules
