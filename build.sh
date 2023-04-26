@@ -51,15 +51,20 @@ repos=(
 if [ ! -d ./pack ];
 then
   echo "No plugins directory structure. Create structure..."
-  mkdir -p ./pack/plugins/start ./pack/plugins/opt ./colors
+  mkdir -p -f ./pack/plugins/start ./pack/plugins/opt ./colors
 fi
 
 GIT_DIR=./.git
 if [[ -d "$GIT_DIR" ]];
 then
   echo "Repo git exists."
+  if [ ll | grep "gitmodule" ];
+  then
+    git submodule update --init --recursive
+    exit
+  fi
 else
-	echo "Repo git does not exist.Init repository..."
+  echo "Repo git does not exist.Init repository..."
   git init -b master
 fi
 
