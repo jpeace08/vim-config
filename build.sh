@@ -106,11 +106,9 @@ function add_submodules() {
 }
 
 function sync_git_submodules() {
-  echo "$(check_path_exist "${git_modules}" "f")"
   if [ "$(check_path_exist "${git_modules}" "f")" = "true" ];
   then
     echo "Sync submodules..."
-    # git submodule update --init --recursive
     git submodule foreach "(git checkout master; git pull)&"
     echo "Sync submodules successfully"
   fi
@@ -127,8 +125,26 @@ function config_theme() {
   fi
 }
 
+# Shell script not support assertion regex
+
+function removeUnusedSubmodules() {
+  for dir in `find ${start_directory} -maxdepth 1 -mindepth 1 -type d`
+  do
+    if [[ "${dir}" =~ [\/\w\.]*start\/(.+)$ ]];
+    then
+      if ! echo "${package_dependencies[@]}" | grep -qw "${BASH_REMATCH[1]}";
+      then
+        # gitmodules file added in gitignore file => just remove dir of submodule
+        rm -rf "${start_directory}/${BASH_REMATCH[1]}"
+        sed "/${BASH_REMATCH[1]}/d" .gitmodules >> gitmodules.temp && mv gitmodules.temp .gitmodules
+      fi
+    fi
+  done
+}
+
 create_dirs_structure
 init_git_repo
 sync_git_submodules
 add_submodules
 config_theme
+removeUnusedSubmodules
