@@ -13,7 +13,7 @@
 
 
 ## Edit dependencies
-repos=(
+package_dependencies=(
   "https://github.com/preservim/nerdtree.git"
   "https://github.com/preservim/nerdtree.git"
   "https://github.com/preservim/nerdtree.git"
@@ -41,54 +41,94 @@ repos=(
   "https://github.com/davidhalter/jedi-vim.git"
   "https://github.com/raimon49/requirements.txt.vim.git"
   "https://github.com/leafgarland/typescript-vim.git"
-  "https://github.com/HerringtonDarkholme/yats.vim.git"ls
-  
-  # "https://github.com/fatih/vim-go"
-  # "https://github.com/phpactor/phpactor",
-  # "https://github.com/stephpy/vim-php-cs-fixer",
+  "https://github.com/HerringtonDarkholme/yats.vim.git"
+  "https://github.com/fatih/vim-go"
+  "https://github.com/phpactor/phpactor",
+  "https://github.com/stephpy/vim-php-cs-fixer",
 )
 
-if [ ! -d ./pack ];
-then
-  echo "No plugins directory structure. Create structure..."
-  mkdir -p -f ./pack/plugins/start ./pack/plugins/opt ./colors
-fi
+full_path="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
+start_directory="${full_path}pack/plugins/start"
+opt_directory="${full_path}pack/plugins/opt"
+git_directory="${full_path}.git"
+git_modules="${full_path}.gitmodules"
+theme_file="gruvbox.vim"
+symbol_link_theme_directory="${full_path}colors"
+theme_directory="${start_directory}gruvbox/colors"
 
-GIT_DIR=./.git
-if [[ -d "$GIT_DIR" ]];
-then
-  echo "Repo git exists."
-  if [ ll | grep "gitmodule" ];
+function check_path_exist() {
+  path="${1}" # path variable
+  mode="${2}" # mode check: file "f" or dir "d"
+  local result="false"
+  if [ -${mode} ${path} ];
   then
-    git submodule update --init --recursive
+    result="true"
+  fi
+  echo "${result}"
+}
+
+function create_dirs_structure() {
+  if [ "$(check_path_exist "${symbol_link_theme_directory}" "d")" = "false" ];
+  then
+    mkdir -p "${symbol_link_theme_directory}"
+  fi
+
+  if [ "$(check_path_exist "${start_directory}" "d")" = "false" ];
+  then
+    mkdir -p "${start_directory}"
+  fi
+
+  if [ "$(check_path_exist "${opt_directory}" "d")" = "false" ];
+  then
+    mkdir -p "${opt_directory}"
+  fi
+}
+
+function init_git_repo() {
+  if [ "$(check_path_exist "${git_directory}" "d")" = "false" ];
+  then
+    git init -b master
+  fi
+}
+
+function add_submodules() {
+  for repos_name in ${package_dependencies[@]}; 
+  do
+    if [[ $repos_name =~ https\:\/\/github.com(\/.*\/)(.*)\.git ]]; 
+    then
+      local _dir_path="${start_directory}/${BASH_REMATCH[2]}"
+      if [ "$(check_path_exist "${_dir_path}" "d")" = "false" ];
+      then
+        git submodule add -f "${repos_name}" "${_dir_path}"
+      fi
+    fi
+  done
+}
+
+function sync_git_submodules() {
+  echo "$(check_path_exist "${git_modules}" "f")"
+  if [ "$(check_path_exist "${git_modules}" "f")" = "true" ];
+  then
+    echo "Sync submodules..."
+    # git submodule update --init --recursive
+    git submodule foreach "(git checkout master; git pull)&"
+    echo "Sync submodules successfully"
+  fi
+}
+
+function config_theme() {
+  if [ "$(check_path_exist "${symbol_link_theme_directory}/${theme_file}" "f")" = "true" ];
+  then
     exit
   fi
-else
-  echo "Repo git does not exist.Init repository..."
-  git init -b master
-fi
-
-cd ./pack/plugins/start
-
-echo "Start add submodule repositories"
-
-for repos_name in ${repos[@]}; 
-do
-  if [[ $repos_name =~ https\:\/\/github.com(\/.*\/)(.*)\.git ]]; 
+  if [ "$(check_path_exist "${symbol_link_theme_directory}" "d")" = "true" ] && [ "$(check_path_exist "${theme_directory}/${theme_file}" "f")" = "true" ];
   then
-    if [ ! -d ./${BASH_REMATCH[2]} ];
-    then
-      git submodule add $repos_name ./${BASH_REMATCH[2]}
-    fi
+    ln -s "${theme_directory}/${theme_file}" "${symbol_link_theme_directory}/${theme_file}"
   fi
-done
+}
 
-echo "Clone repositories successfully!"
-
-FILE_THEME=./gruvbox/colors/gruvbox.vim
-DIR_THEME=../../../colors/
-if [ -f "$FILE_THEME" ] && [ -d "$DIR_THEME" ];
-then
-  cp $FILE_THEME $DIR_THEME
-fi
-
+create_dirs_structure
+init_git_repo
+sync_git_submodules
+add_submodules
+config_theme
