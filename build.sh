@@ -132,22 +132,16 @@ function config_theme() {
 # Shell script not support assertion regex
 
 function removeUnusedSubmodules() {
-    echo "STAR: ${start_directory}"
     for dir in `find ${start_directory} -maxdepth 1 -mindepth 1 -type d`
     do
-        echo "DIR: ${dir}"
         if [[ "${dir}" =~ [\/\w\.]*start\/(.+)$ ]];
         then
-            echo "RE: ${BASH_REMATCH[1]}"
             if ! echo "${package_dependencies[@]}" | grep -qw "${BASH_REMATCH[1]}";
             then
                 # gitmodules file added in gitignore file => just remove dir of submodule
                 git submodule deinit -f "${path_start_dir}${BASH_REMATCH[1]}"
-                echo "PM1: ${path_start_dir}${BASH_REMATCH[1]}"
                 rm -rf "${git_directory}modules/${path_start_dir}${BASH_REMATCH[1]}"
-                echo "PM2: ${git_directory}modules/${path_start_dir}${BASH_REMATCH[1]}"
                 git rm -f "${path_start_dir}${BASH_REMATCH[1]}"
-                echo "PM3: ${path_start_dir}${BASH_REMATCH[1]}"
                 sed "/${BASH_REMATCH[1]}/d" .gitmodules >> gitmodules.temp && mv gitmodules.temp .gitmodules
             fi
         fi
