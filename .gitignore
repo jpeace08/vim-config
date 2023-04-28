@@ -1,6 +1,4 @@
-colors/
-pack/
-colors/*
-pack/*
-session/
+./colors
+./pack
+./session
 .gitmodules
