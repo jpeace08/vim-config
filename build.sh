@@ -54,7 +54,7 @@ git_directory="${full_path}.git"
 git_modules="${full_path}.gitmodules"
 theme_file="gruvbox.vim"
 symbol_link_theme_directory="${full_path}colors"
-theme_directory="${start_directory}gruvbox/colors"
+theme_directory="${start_directory}/gruvbox/colors"
 
 function check_path_exist() {
   path="${1}" # path variable
