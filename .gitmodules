@@ -1,0 +1,72 @@
+[submodule "pack/plugins/start/nerdtree"]
+	path = pack/plugins/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "pack/plugins/start/vim-nerdtree-tabs"]
+	path = pack/plugins/start/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git
+[submodule "pack/plugins/start/vim-commentary"]
+	path = pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/plugins/start/vim-fugitive"]
+	path = pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/plugins/start/vim-airline"]
+	path = pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "pack/plugins/start/vim-airline-themes"]
+	path = pack/plugins/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "pack/plugins/start/grep.vim"]
+	path = pack/plugins/start/grep.vim
+	url = https://github.com/vim-scripts/grep.vim.git
+[submodule "pack/plugins/start/CSApprox"]
+	path = pack/plugins/start/CSApprox
+	url = https://github.com/vim-scripts/CSApprox.git
+[submodule "pack/plugins/start/delimitMate"]
+	path = pack/plugins/start/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "pack/plugins/start/tagbar"]
+	path = pack/plugins/start/tagbar
+	url = https://github.com/preservim/tagbar.git
+[submodule "pack/plugins/start/ale"]
+	path = pack/plugins/start/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule "pack/plugins/start/indentLine"]
+	path = pack/plugins/start/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+[submodule "pack/plugins/start/vim-rhubarb"]
+	path = pack/plugins/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb.git
+[submodule "pack/plugins/start/gruvbox"]
+	path = pack/plugins/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule "pack/plugins/start/fzf"]
+	path = pack/plugins/start/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "pack/plugins/start/fzf.vim"]
+	path = pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "pack/plugins/start/vimproc.vim"]
+	path = pack/plugins/start/vimproc.vim
+	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "pack/plugins/start/vim-misc"]
+	path = pack/plugins/start/vim-misc
+	url = https://github.com/xolox/vim-misc.git
+[submodule "pack/plugins/start/vim-session"]
+	path = pack/plugins/start/vim-session
+	url = https://github.com/xolox/vim-session.git
+[submodule "pack/plugins/start/ultisnips"]
+	path = pack/plugins/start/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "pack/plugins/start/vim-snippets"]
+	path = pack/plugins/start/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "pack/plugins/start/vim-javascript-syntax"]
+	path = pack/plugins/start/vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax.git
+[submodule "pack/plugins/start/jedi-vim"]
+	path = pack/plugins/start/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "pack/plugins/start/requirements.txt.vim"]
+	path = pack/plugins/start/requirements.txt.vim
+	url = https://github.com/raimon49/requirements.txt.vim.git
