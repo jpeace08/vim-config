@@ -40,11 +40,11 @@ package_dependencies=(
     "https://github.com/jelera/vim-javascript-syntax.git"
     "https://github.com/davidhalter/jedi-vim.git"
     "https://github.com/raimon49/requirements.txt.vim.git"
-    # "https://github.com/leafgarland/typescript-vim.git"
-    # "https://github.com/HerringtonDarkholme/yats.vim.git"
-    # "https://github.com/fatih/vim-go"
-    # "https://github.com/phpactor/phpactor",
-    # "https://github.com/stephpy/vim-php-cs-fixer",
+    "https://github.com/leafgarland/typescript-vim.git"
+    "https://github.com/HerringtonDarkholme/yats.vim.git"
+    "https://github.com/fatih/vim-go"
+    "https://github.com/phpactor/phpactor",
+    "https://github.com/stephpy/vim-php-cs-fixer",
 )
 
 full_path="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
@@ -60,7 +60,7 @@ theme_directory="${start_directory}/gruvbox/colors/"
 
 function check_path_exist() {
     path="${1}" # path variable
-    mode="${2}" # mode check: file "f" or dir "d"
+    mode="${2}" # mode [d, f, L]
     local result="false"
     if [ -${mode} ${path} ];
     then

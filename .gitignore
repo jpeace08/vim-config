@@ -1,5 +1,6 @@
 colors
 pack
-session
+session*
 .gitmodules
 *.swp
+vimrc
