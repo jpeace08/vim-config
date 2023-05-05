@@ -48,7 +48,7 @@ package_dependencies=(
 )
 
 # full_path="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
-full_path="$HOME/.vim"
+full_path="$HOME/.vim/"
 path_start_dir="pack/plugins/start/"
 path_opt_dir="pack/plugins/opt/"
 start_directory="${full_path}${path_start_dir}"
@@ -150,15 +150,18 @@ function removeUnusedSubmodules() {
 }
 
 function create_alias() {
-    if [ echo "$HOME/.bashrc" | grep "vime" ];
+    local check_alias=$(echo "$HOME/.bashrc" | grep -qw "vime")
+    if [ ! -z "${check_alias}" ];
     then
         echo "alias exist"
         exit 1
     fi
-    echo "alias vime =\"${full_path}/scripts/auto_load_config.sh\"" >> "$HOME/.bashrc"
-	source "$HOME/.bashrc"
+    echo "alias vime=\"${full_path}scripts/auto_load_config.sh\"" >> "$HOME/.bashrc"
+    . "$HOME/.bashrc"
 }
 
+
+cd "${full_path}"
 create_dirs_structure
 init_git_repo
 sync_git_submodules
