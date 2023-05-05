@@ -47,7 +47,8 @@ package_dependencies=(
     "https://github.com/stephpy/vim-php-cs-fixer",
 )
 
-full_path="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
+# full_path="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
+full_path="$HOME/.vim"
 path_start_dir="pack/plugins/start/"
 path_opt_dir="pack/plugins/opt/"
 start_directory="${full_path}${path_start_dir}"
@@ -148,9 +149,20 @@ function removeUnusedSubmodules() {
     done
 }
 
+function create_alias() {
+    if [ echo "$HOME/.bashrc" | grep "vime" ];
+    then
+        echo "alias exist"
+        exit 1
+    fi
+    echo "alias vime =\"${full_path}/scripts/auto_load_config.sh\"" >> "$HOME/.bashrc"
+	source "$HOME/.bashrc"
+}
+
 create_dirs_structure
 init_git_repo
 sync_git_submodules
 add_submodules
 config_theme
 removeUnusedSubmodules
+create_alias

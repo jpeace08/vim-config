@@ -7,8 +7,9 @@ config_langs=( "js" "py" "php" )
 language="${config_langs[0]}" #default
 tmux_session_name="$(tmux display-message -p '#S' 2>/dev/null)"
 vim_dir_path="${HOME}/.vim"
+symbol_link_dotfile="${vim_dir_path}/vimrc"
 
-function get_postfix_dot_file() {
+function get_postfix_dotfile() {
     for lang_support in ${config_langs[@]};
     do
         if echo "${tmux_session_name}" | grep -qw "${lang_support}"
@@ -18,10 +19,13 @@ function get_postfix_dot_file() {
     done
 }
 
-function check_symbol_link_dot_file_exist () {
+function check_symbol_link_dotfile_exist () {
     echo "Check sb link dot file"	
 }
 
+function create_sbl_dotfile() {
+    ln -s "${vim_dir_path}/dotfiles/vimrc-${language}" "${symbol_link_dotfile}"
+}
 
 function open_project () {
     if [ $# -eq 0 ] || [ -z "$1" ];
@@ -40,23 +44,27 @@ function open_project () {
 }
 
 
-function create_symbol_link() {
-
+function create_symbol_link_dotfile() {
     if [ ! -f "${vim_dir_path}/dotfiles/vimrc-${language}" ];
     then
         echo "please add config for ${language}"
     else
-        meta_data="$(awk '/meta_data/' ${vim_dir_path}/vimrc | grep ${language})" 
-        if [ ! -L "${vim_dir_path}/vimrc" ] || [ -z "${meta_data}" ];
+        if [ ! -L "${symbol_link_dotfile}" ] || [ ! -e "${symbol_link_dotfile}" ];
         then
-            echo "create new symbol link dot file"
-            unlink "${vim_dir_path}/vimrc" 2>/dev/null
-            ln -s "${vim_dir_path}/dotfiles/vimrc-${language}" "${vim_dir_path}/vimrc"
+            echo "Symbol link dotfile doesn't exist. Create new symbol link"
+            create_sbl_dotfile
+        else
+            meta_data="$(awk '/meta_data/' ${symbol_link_dotfile} | grep ${language})"     
+            if [ -z "${meta_data}" ];
+            then
+                unlink "${vim_dir_path}/vimrc" 2>/dev/null
+                create_sbl_dotfile
+            fi
         fi
     fi
 }
 
 
-get_postfix_dot_file
-create_symbol_link
+get_postfix_dotfile
+create_symbol_link_dotfile
 open_project $1
