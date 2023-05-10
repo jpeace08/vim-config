@@ -10,7 +10,7 @@
 # cp -r ~/.vim/pack/plugins/start/fzf ~/.fzf
 # ./.fzf/install
 # sudo apt install silversearcher-ag
-
+# sudo apt-get install fonts-powerline
 
 ## Edit dependencies
 package_dependencies=(
@@ -48,6 +48,7 @@ package_dependencies=(
 )
 
 # full_path="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
+theme="gruvbox"
 full_path="$HOME/.vim/"
 path_start_dir="pack/plugins/start/"
 path_opt_dir="pack/plugins/opt/"
@@ -55,9 +56,9 @@ start_directory="${full_path}${path_start_dir}"
 opt_directory="${full_path}${path_opt_dir}"
 git_directory="${full_path}.git/"
 git_modules="${full_path}.gitmodules"
-theme_file="gruvbox.vim"
+theme_file="${theme}.vim"
 symbol_link_theme_directory="${full_path}colors/"
-theme_directory="${start_directory}/gruvbox/colors/"
+theme_directory="${start_directory}/${theme}/colors/"
 
 function check_path_exist() {
     path="${1}" # path variable
@@ -125,6 +126,7 @@ function config_theme() {
     else
         if [ "$(check_path_exist "${symbol_link_theme_directory}" "d")" = "true" ] && [ "$(check_path_exist "${theme_directory}${theme_file}" "f")" = "true" ];
         then
+            rm -rf "${symbol_link_theme_directory}/*" 
             ln -s "${theme_directory}${theme_file}" "${symbol_link_theme_directory}${theme_file}"
         fi
     fi

@@ -55,8 +55,16 @@ set ruler
 set number
 
 let no_buffers_menu=1
+
+if (has('termguicolors'))
+  set termguicolors
+endif
 colorscheme gruvbox
-set bg=dark
+set bg=light
+let g:gruvbox_contrast_light='soft'
+if &background == "light" && g:colors_name == "gruvbox"
+    hi Normal guibg=#FFFFFF
+endif
 
 " Better command line completion 
 set wildmenu
@@ -129,7 +137,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'google_light'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -353,7 +361,7 @@ nnoremap <Leader>o :.Gbrowse<CR>
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=150
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
@@ -394,6 +402,7 @@ endif
 "*****************************************************************************
 
 " vim-airline
+let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -401,9 +410,9 @@ endif
 if !exists('g:airline_powerline_fonts')
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '|'
-  " let g:airline_left_sep          = '▶'
+  let g:airline_left_sep          = '▶'
   let g:airline_left_alt_sep      = '»'
-  " let g:airline_right_sep         = '◀'
+  let g:airline_right_sep         = '◀'
   let g:airline_right_alt_sep     = '«'
   let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
   let g:airline#extensions#readonly#symbol   = '⊘'

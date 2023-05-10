@@ -37,9 +37,6 @@
 [submodule "pack/plugins/start/vim-rhubarb"]
 	path = pack/plugins/start/vim-rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
-[submodule "pack/plugins/start/gruvbox"]
-	path = pack/plugins/start/gruvbox
-	url = https://github.com/morhetz/gruvbox.git
 [submodule "pack/plugins/start/fzf"]
 	path = pack/plugins/start/fzf
 	url = https://github.com/junegunn/fzf.git
@@ -76,3 +73,6 @@
 [submodule "pack/plugins/start/yats.vim"]
 	path = pack/plugins/start/yats.vim
 	url = https://github.com/HerringtonDarkholme/yats.vim.git
+[submodule "pack/plugins/start/gruvbox"]
+	path = pack/plugins/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git

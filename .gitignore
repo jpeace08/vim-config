@@ -4,3 +4,4 @@ session*
 .gitmodules
 *.swp
 vimrc
+.netrwhist

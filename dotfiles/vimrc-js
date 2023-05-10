@@ -56,8 +56,13 @@ set ruler
 set number
 
 let no_buffers_menu=1
+
+if (has('termguicolors'))
+  set termguicolors
+endif
 colorscheme gruvbox
 set bg=dark
+let g:gruvbox_contrast_light='hard'
 
 " Better command line completion 
 set wildmenu
@@ -130,7 +135,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'google_light'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -378,6 +383,7 @@ endif
 "*****************************************************************************
 
 " vim-airline
+let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
