@@ -60,10 +60,13 @@ if (has('termguicolors'))
   set termguicolors
 endif
 colorscheme gruvbox
-set bg=light
+set bg=dark
 let g:gruvbox_contrast_light='soft'
 if &background == "light" && g:colors_name == "gruvbox"
     hi Normal guibg=#FFFFFF
+endif
+if &background == "dark" && g:colors_name == "gruvbox"
+    hi Normal guibg=#181a1b
 endif
 
 " Better command line completion 

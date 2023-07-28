@@ -61,11 +61,16 @@ if (has('termguicolors'))
   set termguicolors
 endif
 colorscheme gruvbox
-set bg=light
+set bg=dark
 let g:gruvbox_contrast_light='hard'
 if &background == "light" && g:colors_name == "gruvbox"
     hi Normal guibg=#FFFFFF
 endif
+
+if &background == "dark" && g:colors_name == "gruvbox"
+    hi Normal guibg=#181a1b
+endif
+
 " Better command line completion 
 set wildmenu
 
@@ -137,7 +142,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'google_light'
+let g:airline_theme = 'onedark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
