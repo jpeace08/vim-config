@@ -64,11 +64,12 @@ colorscheme gruvbox
 set bg=dark
 let g:gruvbox_contrast_light='hard'
 if &background == "light" && g:colors_name == "gruvbox"
-    hi Normal guibg=#FFFFFF
+    hi Normal guibg=#f9f5d7
 endif
 
 if &background == "dark" && g:colors_name == "gruvbox"
-    hi Normal guibg=#181a1b
+    hi Normal guibg=#1d2021
+    hi Normal guifg=#bebebe
 endif
 
 " Better command line completion 
