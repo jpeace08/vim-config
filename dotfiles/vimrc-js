@@ -337,7 +337,7 @@ noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
 
 "" Close buffer
-noremap <leader>c :bd<CR>
+" noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
@@ -426,3 +426,20 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+
+" Bufkill
+" Turn off default <leader>bb, <leader>bd, etc. mappings (default: 1)
+let g:BufKillCreateMappings = 0
+
+" Override default <C-^> behavior for swapping between alternate buffers (default: 0)
+" let g:BufKillOverrideCtrlCaret = 1
+
+" Modify the command prefix if it conflicts with other plugins
+" The below changes BD to DD, BB to DB, etc. (default: 'B')
+" let g:BufKillCommandPrefix = 'D'
+
+" If the buffer you want to kill is in many windows, the following option governs what to do (default: 'confirm', options: 'confirm'/'kill'/'cancel')
+let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
+
+nnoremap <leader>c :BD<cr>

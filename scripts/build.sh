@@ -43,8 +43,9 @@ package_dependencies=(
     "https://github.com/leafgarland/typescript-vim.git"
     "https://github.com/HerringtonDarkholme/yats.vim.git"
     "https://github.com/fatih/vim-go"
-    "https://github.com/phpactor/phpactor",
-    "https://github.com/stephpy/vim-php-cs-fixer",
+    "https://github.com/phpactor/phpactor"
+    "https://github.com/stephpy/vim-php-cs-fixer"
+    "https://github.com/qpkorr/vim-bufkill.git"
 )
 
 # full_path="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
